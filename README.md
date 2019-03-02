@@ -10,4 +10,9 @@ First run below code to create the JSON culumn to the posts table:
 
 Below code should add the stored procedure:
 
+DELIMITER //
+CREATE PROCEDURE `denormalizeComments` (in postId int(11))
+BEGIN
 
+END //
+DELIMITER;
