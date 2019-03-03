@@ -70,6 +70,10 @@ Before creating the stored procedure I make sure to delete the trigger from ex2.
 	END $$
 	DELIMITER ;
 
+## Ex4
+
+I did not manage to complete pt 4 & 5
+
 
 
 

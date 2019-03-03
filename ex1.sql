@@ -1,12 +1,29 @@
 use stackoverflow;
-DROP TRIGGER IF EXISTS after_comment_insert;
-DROP PROCEDURE IF EXISTS insertComment;
+DROP VIEW IF EXISTS postInfoView;
+CREATE VIEW postInfoView AS
+SELECT
+users.DisplayName AS userName,
+posts. postText,
+postScore
+FROM posts INNER JOIN users ON posts.OwnerUserId = users.Id
+
+DROP PROCEDURE IF EXISTS createQAMatView;
 DELIMITER $$
-CREATE PROCEDURE `insertComment` (IN id int(11),IN postId int(11),IN userId int(11))
+CREATE PROCEDURE `createMatView` (IN id int(11),IN postId int(11),IN userId int(11))
 BEGIN
-	INSERT INTO comments
-	(`Id`, `PostId`, `UserId`)
-	VALUES (id, postId, userId);
-	CALL denormalizeComments(postId);
+	DROP TABLE IF EXISTS qa_mat_view;
+	CREATE TABLE qa_mat_view(
+		Question JSON,
+		Answer JSON
+    );
+     
 END $$
 DELIMITER ;
+
+
+INSERT INTO qa_mat_view (`Question`, `Answer`)
+SELECT question, answer 
+FROM ()
+
+
+SELECT 
